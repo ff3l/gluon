@@ -8,7 +8,7 @@ local uci = require('luci.model.uci').cursor()
 local lutil = require 'luci.util'
 
 
-if not uci:get('fastd', 'mesh_vpn', 'enabled') then
+if not sysconfig.gluon_version then
 
 -- The previously used user is removed, we need root privileges to use the packet_mark option
 users.remove_user('gluon-fastd')
