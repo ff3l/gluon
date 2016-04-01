@@ -8,6 +8,8 @@ local uci = require('luci.model.uci').cursor()
 local lutil = require 'luci.util'
 
 
+if not uci:get('fastd', 'mesh_vpn', 'enabled') then
+
 -- The previously used user is removed, we need root privileges to use the packet_mark option
 users.remove_user('gluon-fastd')
 
@@ -146,3 +148,4 @@ uci:section('firewall', 'include', 'mesh_vpn_dns',
 
 uci:save('firewall')
 uci:commit('firewall')
+end

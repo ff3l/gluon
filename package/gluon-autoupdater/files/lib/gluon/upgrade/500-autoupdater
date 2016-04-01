@@ -3,6 +3,8 @@
 local site = require 'gluon.site_config'
 local uci = require 'luci.model.uci'
 
+local platform = require 'gluon.platform'
+
 local c = uci.cursor()
 
 
@@ -29,10 +31,21 @@ if not c:get('autoupdater', 'settings') then
 		f:close()
 	end
 
+	if platform.match('ar71xx', 'generic', {'archer-c5', 'archer-c7'}) then
+		branch = 'experimental'
+	end
+
 	c:section('autoupdater', 'autoupdater', 'settings',
 		  {
 			  enabled = enabled,
 			  branch = branch,
+		  }
+	)
+elseif platform.match('ar71xx', 'generic', {'archer-c5', 'archer-c7'}) then
+	c:section('autoupdater', 'autoupdater', 'settings',
+		  {
+			  enabled = 1,
+			  branch = 'experimental',
 		  }
 	)
 end
