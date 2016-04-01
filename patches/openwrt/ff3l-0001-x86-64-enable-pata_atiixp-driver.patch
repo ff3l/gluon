@@ -1,3 +1,5 @@
+From: David Lutz <kpanic@ff3l.net>
+Date: Fri, 1 Apr 2016 14:26:15 +0100
 Subject: x86/64: enable pata_atiixp driver
 
 This enables booting from devices that use an ATI PATA controller for
